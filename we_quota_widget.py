@@ -186,10 +186,10 @@ def notify_user(title, message):
             pass
     if IS_MAC:
         try:
-            script = (
-                'display notification ' + json.dumps(message) +
-                ' with title ' + json.dumps(title)
-            )
+            def esc(text):
+                return text.replace("\\", "\\\\").replace('"', '\\"')
+
+            script = f'display notification "{esc(message)}" with title "{esc(title)}"'
             subprocess.Popen(["osascript", "-e", script])
         except Exception:
             pass
