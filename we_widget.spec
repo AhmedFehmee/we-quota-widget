@@ -1,6 +1,11 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import os
+import sys
+
 block_cipher = None
+
+icon_file = 'we_widget.ico' if sys.platform.startswith('win') and os.path.exists('we_widget.ico') else None
 
 a = Analysis(
     ['we_quota_widget.py'],
@@ -82,5 +87,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='we_widget.ico',
+    icon=icon_file,
 )
